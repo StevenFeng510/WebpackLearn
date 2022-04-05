@@ -1,4 +1,1 @@
-// es6 代码
-const fn = () => {};
-
-console.log('hello');
+console.log('hello1111');
