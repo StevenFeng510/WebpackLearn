@@ -1,4 +1,9 @@
 import { sum, square } from './js/utils.js';
+// 使用css-loader处理css文件
+// import 'css-loader!../css/login.css';
+import './css/login.css';
+import './css/login.less';
+
 const getInfo = require('./js/api.js');
 
 console.log(sum(10, 5));
