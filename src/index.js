@@ -3,6 +3,7 @@ import { sum, square } from './js/utils.js';
 // import 'css-loader!../css/login.css';
 import './css/login.css';
 import './css/login.less';
+import './css/test.css';
 
 const getInfo = require('./js/api.js');
 
