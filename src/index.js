@@ -4,6 +4,7 @@ import { sum, square } from './js/utils.js';
 import './css/login.css';
 import './css/login.less';
 import './css/test.css';
+import './js/Image';
 
 const getInfo = require('./js/api.js');
 

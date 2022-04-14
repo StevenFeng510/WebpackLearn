@@ -52,6 +52,17 @@ module.exports = {
                 test: /\.less$/,
                 use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
             },
+            {
+                test: /\.(png|svg|gif|jpe?g)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false, // 不转为 esModule
+                        },
+                    },
+                ],
+            },
         ],
     },
 };
