@@ -157,3 +157,26 @@ css-loader 中的配置项
 -   background url
 
 file-loader 可以处理导入的静态资源(图片 动图等)src 值
+
+## 设置图片名称
+
+占位符含义
+
+-   [ext]: 扩展名
+-   [name]: 文件名
+-   [hash]: 文件内容 命名 生成 hash 值
+-   [contentHash]:
+-   [hash:<length>]: 有条件的hash值 '按长度'
+-   [path]: 路径
+
+```js
+ use: [
+     {
+         loader: 'file-loader',
+         options: {
+             name: 'img/[name].[hash:6].[ext]',
+             // outputPath: 'img', // 不简写
+         },
+     },
+ ],
+```

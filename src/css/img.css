@@ -1,0 +1,6 @@
+.bgBox {
+    width: 240px;
+    height: 240px;
+    border: 1px solid #000;
+    background-image: url('../img/logo2.png');
+}

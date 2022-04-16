@@ -43,6 +43,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             importLoaders: 1,
+                            esModule: false, // 不转为 esModule
                         },
                     },
                     'postcss-loader',
@@ -54,11 +55,20 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|gif|jpe?g)$/,
+                // use: [
+                //     {
+                //         loader: 'file-loader',
+                //         options: {
+                //             esModule: false, // 不转为 esModule
+                //         },
+                //     },
+                // ],
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            esModule: false, // 不转为 esModule
+                            name: '[name].[hash:6].[ext]',
+                            outputPath: 'img',
                         },
                     },
                 ],
