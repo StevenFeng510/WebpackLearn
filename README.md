@@ -162,12 +162,12 @@ file-loader 可以处理导入的静态资源(图片 动图等)src 值
 
 占位符含义
 
--   [ext]: 扩展名
--   [name]: 文件名
+-   [ext] : 扩展名
+-   [name] : 文件名
 -   [hash]: 文件内容 命名 生成 hash 值
 -   [contentHash]:
--   [hash:<length>]: 有条件的hash值 '按长度'
--   [path]: 路径
+-   [hash:<length>] : 有条件的 hash 值 '按长度'
+-   [path] : 路径
 
 ```js
  use: [
@@ -179,4 +179,70 @@ file-loader 可以处理导入的静态资源(图片 动图等)src 值
          },
      },
  ],
+```
+
+## url-loader 处理图片
+
+```js
+ use: [
+     {
+         loader: 'url-loader',
+         options: {
+             name: 'img/[name].[hash:6].[ext]',
+             // outputPath: 'img', // 不简写
+         },
+     },
+ ],
+```
+
+-   1 url-loader base64 uri 文件当中, 减少请求次数
+-   2 file-loader 将资源拷贝至指定的目录, 分开请求
+-   3 url-loader 内部其实也可以调用 file-loader
+-   4 limit
+
+## asset 处理图片
+
+asset module type
+
+-   1 asset/resource --> file-loader ( 输出路径 )
+-   2 asset/inline --> url-loader (所有 data uri)
+-   3 asset/source --> raw-loader
+-   4 asset (parser dataUrlCondition)
+
+可以在 output 中直接配置 asset 的输出路径
+// assetModuleFilename: 'img/[name].[hash:4].[ext]',
+
+```js
+ {
+     test: /\.(png|svg|gif|jpe?g)$/,
+     type: 'asset/resource',
+     generator: {
+         // 指定打包资源的输出
+         filename: 'img/[name].[hash:4][ext]',
+     },
+ },
+```
+
+## asset 处理字体
+
+asset/resource 将打包好的字体文件 放在 font 里
+
+```js
+{
+    test: /\.(ttf|woff2?)$/,
+    type: 'asset/resource',
+    generator: {
+        filename: 'font/[name].[hash:3][ext]',
+    },
+},
+```
+
+## webpack 插件使用
+
+-   1 loader: 对特定类型的 转换
+-   2 plugin: 做更多的事情 ( html 模板 | 自动删除 dist 等 )
+
+```cmd
+// 安装可以自动删除dist文件的插件
+yarn add clear-webpack-plugin -d
 ```

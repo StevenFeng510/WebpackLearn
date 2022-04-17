@@ -1,6 +1,7 @@
 // CommonJS语法
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -10,6 +11,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js', // 文件名称
+        // assetModuleFilename: 'img/[name].[hash:4].[ext]',
     },
     // HtmlWebpackPlugin 插件配置生成html的模板
     plugins: [
@@ -17,6 +19,7 @@ module.exports = {
             template: path.join(__dirname, 'src', 'index.html'),
             filename: 'index.html',
         }),
+        new CleanWebpackPlugin(),
     ],
     // webpack-dev-server
     devServer: {
@@ -54,24 +57,72 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
             },
             {
-                test: /\.(png|svg|gif|jpe?g)$/,
-                // use: [
-                //     {
-                //         loader: 'file-loader',
-                //         options: {
-                //             esModule: false, // 不转为 esModule
+                //     test: /\.(png|svg|gif|jpe?g)$/,
+                //     // use: [
+                //     //     {
+                //     //         loader: 'file-loader',
+                //     //         options: {
+                //     //             esModule: false, // 不转为 esModule
+                //     //         },
+                //     //     },
+                //     // ],
+                //     /*     use: [
+                //         {
+                //             loader: 'file-loader',
+                //             options: {
+                //                 name: '[name].[hash:6].[ext]',
+                //                 outputPath: 'img',
+                //             },
                 //         },
-                //     },
-                // ],
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[hash:6].[ext]',
-                            outputPath: 'img',
-                        },
+                //     ], */
+                //     use: [
+                //         {
+                //             loader: 'url-loader',
+                //             options: {
+                //                 name: 'img/[name].[hash:6].[ext]',
+                //                 limit: 25 * 1024,
+                //             },
+                //         },
+                //     ],
+            },
+            // {
+            //     test: /\.(png|svg|gif|jpe?g)$/,
+            //     type: 'asset/inline',
+            //     /* generator: {
+            //         // 指定打包资源的输出
+            //         filename: 'img/[name].[hash:4][ext]',
+            //     }, */
+            // },
+
+            // {
+            //     test: /\.(png|svg|gif|jpe?g)$/,
+            //     type: 'asset/inline',
+            //     /* generator: {
+            //         // 指定打包资源的输出
+            //         filename: 'img/[name].[hash:4][ext]',
+            //     }, */
+            // },
+
+            {
+                test: /\.(png|svg|gif|jpe?g)$/,
+                type: 'asset',
+                generator: {
+                    // 指定打包资源的输出
+                    filename: 'img/[name].[hash:4][ext]',
+                },
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 30 * 1024,
                     },
-                ],
+                },
+            },
+
+            {
+                test: /\.(ttf|woff2?)$/,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'font/[name].[hash:3][ext]',
+                },
             },
         ],
     },
