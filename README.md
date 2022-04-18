@@ -246,3 +246,12 @@ asset/resource 将打包好的字体文件 放在 font 里
 // 安装可以自动删除dist文件的插件
 yarn add clear-webpack-plugin -d
 ```
+
+## html-webpack-plugin 使用
+
+```js
+new htmlWebpackPlugin({
+     template: path.join(__dirname, 'src', 'index.html'),
+     filename: 'index.html',
+}),
+```
