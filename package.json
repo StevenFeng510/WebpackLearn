@@ -11,6 +11,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@babel/cli": "^7.17.6",
+        "@babel/core": "^7.17.9",
         "autoprefixer": "^10.4.4",
         "babel-loader": "^8.2.4",
         "clean-webpack-plugin": "^4.0.0",

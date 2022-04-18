@@ -250,8 +250,34 @@ yarn add clear-webpack-plugin -d
 ## html-webpack-plugin 使用
 
 ```js
+// 要先导入插件
+const htmlWebpackPlugin = require('html-webpack-plugin');
+```
+
+```js
+// 实例化对象就能使用
 new htmlWebpackPlugin({
      template: path.join(__dirname, 'src', 'index.html'),
      filename: 'index.html',
 }),
+```
+
+## Babel
+
+用于处理 JS 兼容
+
+-   1 为什么需要 Babel?
+    JSX TS ES6+ 需要兼容 --> 浏览器平台直接使用
+
+```cmd
+// 安装babel核心
+yarn add @babel/core -d
+
+// 安装babel工具  如果要在命令行中使用babel
+yarn add @babel/cli -d
+
+// 安装babel转换js为es5语法的插件
+yarn add @babel/plugin-transform-arrow-functions -d
+.. @babel/plugin-transform-block-scoping  //const 转换var
+.. @babel/preset -env -d
 ```
