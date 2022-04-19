@@ -7,10 +7,12 @@ module.exports = {
     mode: 'development',
     // 入口文件
     entry: path.join(__dirname, 'src', 'index.js'),
+    // 开发工具
+    devtool: false,
     // 输出
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js', // 文件名称
+        filename: 'js/main.js', // 文件名称
         // assetModuleFilename: 'img/[name].[hash:4].[ext]',
     },
     // HtmlWebpackPlugin 插件配置生成html的模板
@@ -30,14 +32,14 @@ module.exports = {
     module: {
         rules: [
             // 全写
-            // {
-            //     test: /\.css$/, // 正则表达式, 匹配需要处理的文件
-            //     use: [
-            //         {
-            //             loader: 'css-loader',
-            //         },
-            //     ],
-            // },
+            {
+                //     test: /\.css$/, // 正则表达式, 匹配需要处理的文件
+                //     use: [
+                //         {
+                //             loader: 'css-loader',
+                //         },
+                //     ],
+            },
             // 处理css文件配置
             {
                 test: /\.css$/,
@@ -58,7 +60,7 @@ module.exports = {
                 test: /\.less$/,
                 use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
             },
-            // 处理图片配置
+            // 处理图片配置 file-loader url-loader等
             {
                 //     test: /\.(png|svg|gif|jpe?g)$/,
                 //     // use: [
@@ -88,23 +90,22 @@ module.exports = {
                 //         },
                 //     ],
             },
-            // {
-            //     test: /\.(png|svg|gif|jpe?g)$/,
-            //     type: 'asset/inline',
-            //     /* generator: {
-            //         // 指定打包资源的输出
-            //         filename: 'img/[name].[hash:4][ext]',
-            //     }, */
-            // },
-
-            // {
-            //     test: /\.(png|svg|gif|jpe?g)$/,
-            //     type: 'asset/inline',
-            //     /* generator: {
-            //         // 指定打包资源的输出
-            //         filename: 'img/[name].[hash:4][ext]',
-            //     }, */
-            // },
+            {
+                //     test: /\.(png|svg|gif|jpe?g)$/,
+                //     type: 'asset/inline',
+                //     /* generator: {
+                //         // 指定打包资源的输出
+                //         filename: 'img/[name].[hash:4][ext]',
+                //     }, */
+                // },
+                // {
+                //     test: /\.(png|svg|gif|jpe?g)$/,
+                //     type: 'asset/inline',
+                //     /* generator: {
+                //         // 指定打包资源的输出
+                //         filename: 'img/[name].[hash:4][ext]',
+                //     }, */
+            },
 
             {
                 test: /\.(png|svg|gif|jpe?g)$/,
@@ -127,19 +128,11 @@ module.exports = {
                     filename: 'font/[name].[hash:3][ext]',
                 },
             },
-
             // 处理js 文件配置
             {
                 test: /\.js$/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        // 预设配置
-                        options: {
-                            preset: ['@babel/preset-env'],
-                        },
-                    },
-                ],
+                exclude: /node_modules/,
+                use: ['babel-loader'],
             },
         ],
     },

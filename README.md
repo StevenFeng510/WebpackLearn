@@ -262,6 +262,8 @@ new htmlWebpackPlugin({
 }),
 ```
 
+## copy-webpack-plugin
+
 ## Babel
 
 用于处理 JS 兼容
@@ -308,4 +310,68 @@ yarn add babel-loader -d
          },
      ],
  },
+```
+
+```js
+ {
+    test: /\.js$/,
+    use: [
+        {
+            loader: 'babel-loader',
+            // 预设配置 (插件集合)
+            options: {
+                presets: ['@babel/preset-env'],
+                // 指定兼容浏览器
+             /*    presets: [
+                    [
+                        '@babel/preset-env',
+                        //{ targets: 'chrome 91' }
+                    ]
+                ], */
+            },
+        },
+    ],
+},
+```
+
+> babel 打包也会根据`.browserslistrc`里面的配置, 来兼容不同的浏览器
+
+babel-loader 相关的配置文件
+
+-   babel.config.js(json cjs mjs) 可以单独配置 babel 的配置项
+-   babelrc.json(js)
+
+## polyfill 配置
+
+用于更全面的转换 js 语法, 兼容更多的浏览器(填充)
+
+-   1 可以按需配置
+-   2 @babel/polyfill(Babel 7.4.0 版本开始被弃用) --> (建议安装)core-js/stable (符合 ECMA)regenerator-runtime(需要转换包含 generator 的方法)
+
+-   @babel/polyfill **x 不建议直接安装 polyfill**
+-   core-js
+-   regenerator-runtime
+
+需要在入口文件中导入
+
+```js
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+```
+
+然后在`babel.config.js`中配置
+
+```js
+ presets: [
+        [
+            '@babel/preset-env',
+            {
+                // 默认值false 表示不对当前的JS处理做polyfill 的填充
+                // usage: 依据用户源代码当中所使用到的新语法进行填充
+                // entry: 依据当前筛选出来的浏览器决定填充
+                useBuiltIns: 'usage',
+                corejs: 3,
+            },
+        ],
+    ],
 ```
