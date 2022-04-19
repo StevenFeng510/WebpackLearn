@@ -38,6 +38,7 @@ module.exports = {
             //         },
             //     ],
             // },
+            // 处理css文件配置
             {
                 test: /\.css$/,
                 use: [
@@ -52,10 +53,12 @@ module.exports = {
                     'postcss-loader',
                 ],
             },
+            // 处理less文件配置
             {
                 test: /\.less$/,
                 use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
             },
+            // 处理图片配置
             {
                 //     test: /\.(png|svg|gif|jpe?g)$/,
                 //     // use: [
@@ -116,13 +119,27 @@ module.exports = {
                     },
                 },
             },
-
+            // asset 处理字体配置
             {
                 test: /\.(ttf|woff2?)$/,
                 type: 'asset/resource',
                 generator: {
                     filename: 'font/[name].[hash:3][ext]',
                 },
+            },
+
+            // 处理js 文件配置
+            {
+                test: /\.js$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        // 预设配置
+                        options: {
+                            preset: ['@babel/preset-env'],
+                        },
+                    },
+                ],
             },
         ],
     },

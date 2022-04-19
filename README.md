@@ -279,5 +279,33 @@ yarn add @babel/cli -d
 // 安装babel转换js为es5语法的插件
 yarn add @babel/plugin-transform-arrow-functions -d
 .. @babel/plugin-transform-block-scoping  //const 转换var
-.. @babel/preset -env -d
+.. @babel/preset -env -d // babel 预设 包含许多语法转换插件
+```
+
+## Babel-loader
+
+```cmd
+// 安装babel-loader处理js
+yarn add babel-loader -d
+```
+
+自定义 babel 配置 (需要哪些转换插件)
+
+```js
+    // 处理js 文件配置
+ {
+     test: /\.js$/,
+     use: [
+         {
+             loader: 'babel-loader',
+             // 需要配置一下babel的一些插件
+             options: {
+                 plugins: [
+                     '@babel/plugin-transform-arrow-functions',
+                     '@babel/plugin-transform-block-scoping',
+                 ],
+             },
+         },
+     ],
+ },
 ```
