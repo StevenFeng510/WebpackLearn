@@ -264,6 +264,24 @@ new htmlWebpackPlugin({
 
 ## copy-webpack-plugin
 
+将资源在打包的时候, 复制到指定的文件夹
+
+```js
+ new CopyWebpackPlugin({
+     patterns: [
+         {
+             from: 'public',
+             globOptions: {
+                 // 表示不复制index.html文件
+                 ignore: ['**/index.html'],
+             },
+         },
+     ],
+ }),
+```
+
+> e.g 将 public 整个文件夹直接复制到 dist 文件夹中
+
 ## Babel
 
 用于处理 JS 兼容
@@ -286,7 +304,7 @@ yarn add @babel/plugin-transform-arrow-functions -d
 
 ## Babel-loader
 
-```cmd
+```sh
 // 安装babel-loader处理js
 yarn add babel-loader -d
 ```
@@ -375,3 +393,54 @@ import 'regenerator-runtime/runtime';
         ],
     ],
 ```
+
+## webpack-dev-server
+
+watch 打包模式
+
+在`package.json`中, webpack(build)中添加`--watch`
+在`webpack.config.js`中添加 `watch: true`
+
+不足
+
+-   1 所有源代码都会重新编译
+-   2 每次编译成功之后都需要进行文件读写()
+-   3 live-server
+-   4 不能实现局部刷新
+
+webpack-dev-server
+
+```js
+// webpack-dev-server
+devServer: {
+    port: 8000,
+    static: path.join(__dirname, 'dist'),
+},
+```
+
+## webpack-dev-middleware
+
+利用 `webpack-dev-middleware` 和 `express` 进行本地服务器配置
+
+配置`Server.js`文件
+
+```js
+const express = require('express');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpack = require('webpack');
+
+const app = express();
+
+// 获取配置文件
+const config = require('./webpack.config.js');
+const complier = webpack(config);
+
+app.use(webpackDevMiddleware(complier));
+
+// 开启宽口服务
+app.listen(80, () => {
+    console.log('服务器运行在80端口');
+});
+```
+
+## HMR 功能

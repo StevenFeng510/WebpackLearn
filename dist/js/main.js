@@ -20072,6 +20072,7 @@ var p1 = new Promise(function (resolve, reject) {
 });
 console.log(p1);
 foo();
+console.log(333333);
 }();
 /******/ })()
 ;
