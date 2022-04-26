@@ -424,6 +424,8 @@ devServer: {
 
 配置`Server.js`文件
 
+在`webpack.config.js`中配置 `"serve": "webpack serve"`
+
 ```js
 const express = require('express');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -444,3 +446,41 @@ app.listen(80, () => {
 ```
 
 ## HMR 功能
+
+```js
+// webpack-dev-server
+devServer: {
+    // 热更新设定为true 表示开启
+    hot: true,
+    port: 8000,
+    static: path.join(__dirname, 'dist'),
+},
+```
+
+```js
+// 入口文件中 配置需要开启热更新的组件
+// 需要热更新的组件
+if (module.hot) {
+    module.hot.accept(['./js/title.js'], () => {
+        console.log('title模块被更新');
+    });
+}
+```
+
+`webpack.config.js`中配置, `target: 'web'` 表示开发中掠过兼容浏览器配置文件
+
+## vue 组件支持热更新
+
+```js
+ // 处理vue文件的配置
+{
+    test: /\.vue$/,
+    use: ['vue-loader'],
+},
+```
+
+```sh
+yarn add vue@2.6.14
+yarn add vue-loader@14
+yarn add vue-template-compiler@2.6.14
+```

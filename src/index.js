@@ -1,19 +1,19 @@
 // 使用css-loader处理css文件
 // import 'css-loader!../css/login.css';
-import './js/Font';
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+// import './js/Font';
+import Vue from 'vue';
+import App from './App.vue';
+import './js/title';
 
-const title = '前端';
-const foo = () => {
-    console.log(title);
-};
+// 需要热更新的组件
+if (module.hot) {
+    module.hot.accept(['./js/title.js'], () => {
+        console.log('title模块被更新');
+    });
+}
 
-const p1 = new Promise((resolve, reject) => {
-    console.log(111);
-});
-console.log(p1);
+new Vue({
+    render: (h) => h(App),
+}).$mount('#root');
 
-foo();
-
-console.log(333333);
+console.log(3333333444444);

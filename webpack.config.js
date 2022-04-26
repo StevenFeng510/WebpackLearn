@@ -21,6 +21,7 @@ module.exports = {
         new htmlWebpackPlugin({
             template: path.join(__dirname, 'src', 'index.html'),
             filename: 'index.html',
+            title: 'test',
         }),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
@@ -36,6 +37,8 @@ module.exports = {
     ],
     // webpack-dev-server
     devServer: {
+        // 热更新
+        hot: true,
         port: 8000,
         static: path.join(__dirname, 'dist'),
     },
@@ -144,6 +147,11 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: ['babel-loader'],
+            },
+            // 处理vue文件的配置
+            {
+                test: /\.vue$/,
+                use: ['vue-loader'],
             },
         ],
     },
