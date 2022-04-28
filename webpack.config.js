@@ -15,7 +15,9 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         filename: 'js/main.js', // 文件名称
         // assetModuleFilename: 'img/[name].[hash:4].[ext]',
+        publicPath: '/',
     },
+    target: 'web',
     // HtmlWebpackPlugin 插件配置生成html的模板
     plugins: [
         new htmlWebpackPlugin({

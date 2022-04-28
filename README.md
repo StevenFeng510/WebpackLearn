@@ -447,6 +447,8 @@ app.listen(80, () => {
 
 ## HMR 功能
 
+HMR - Hot Module Replacement
+
 ```js
 // webpack-dev-server
 devServer: {
@@ -467,7 +469,7 @@ if (module.hot) {
 }
 ```
 
-`webpack.config.js`中配置, `target: 'web'` 表示开发中掠过兼容浏览器配置文件
+`webpack.config.js`中配置, `target: 'web'` 表示开发中屏蔽兼容浏览器配置文件
 
 ## vue 组件支持热更新
 
@@ -479,8 +481,30 @@ if (module.hot) {
 },
 ```
 
+vue 16 版本针对 vue3 vue 15/14 版本对应 vue2
+
 ```sh
 yarn add vue@2.6.14
 yarn add vue-loader@14
 yarn add vue-template-compiler@2.6.14
 ```
+
+## output 中的 path
+
+path 告诉`webpack`将文件打包到哪里
+
+-   pubilcPath: index.html 内部的引用路径 (需要访问的静态资源的路径)
+-   域名 + publicPath + filename
+
+## devServer 中的 path
+
+-   pubilcPath: 指定本地服务所在的目录
+-   contentBase: 打包之后的资源如果以来其他的资源, 此时就告知 webpack 去哪找
+-   watchContentBase: 支持热更新 (默认值为: false)
+    PS: 最新的配置中 contentBase 已经变为 static
+
+## devServer 常用配置
+
+-   port: 指定 端口号
+-   hotOnly: 部分热刷新 (设置为 true 时生效)
+-   compress: 压缩请求文件的大小 (设置为 true 生效)
