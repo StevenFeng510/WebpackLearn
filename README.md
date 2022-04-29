@@ -508,3 +508,19 @@ path 告诉`webpack`将文件打包到哪里
 -   port: 指定 端口号
 -   hotOnly: 部分热刷新 (设置为 true 时生效)
 -   compress: 压缩请求文件的大小 (设置为 true 生效)
+-   historyApiFallback: 任何 404 的情况下, 默认返回 index.html 内容 (设置为 true 时生效)
+
+## proxy 代理设置
+
+使用场景:
+请求的资源不同源时, 需要做代理转发(会涉及到跨域)
+
+```js
+proxy: {
+    '/api': {
+        target: 'https://api.github.com', // 代理转发请求url
+        pathRewrite: { '^/api': '' }, // 重写路径
+        changeOrigin: true, // 改变请求host
+    },
+},
+```

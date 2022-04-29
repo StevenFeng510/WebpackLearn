@@ -43,6 +43,13 @@ module.exports = {
         hot: true,
         port: 8000,
         static: path.join(__dirname, 'dist'),
+        proxy: {
+            '/api': {
+                target: 'https://api.github.com',
+                pathRewrite: { '^/api': '' },
+                changeOrigin: true,
+            },
+        },
     },
     // 匹配规则
     module: {

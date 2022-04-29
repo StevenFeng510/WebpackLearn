@@ -5,6 +5,7 @@ import './js/Font';
 // import Vue from 'vue';
 // import App from './App.vue';
 import './js/title';
+import axios from 'axios';
 
 // 需要热更新的组件
 if (module.hot) {
@@ -18,3 +19,12 @@ if (module.hot) {
 }).$mount('#root'); */
 
 console.log(3333333444444);
+
+axios
+    .get('/api/users')
+    .then((res) => {
+        console.log(res.data);
+    })
+    .catch((err) => {
+        console.error(err);
+    });
