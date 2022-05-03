@@ -34,6 +34,8 @@
         "postcss-preset-env": "^7.4.3",
         "regenerator-runtime": "^0.13.9",
         "style-loader": "^3.3.1",
+        "ts-loader": "^9.3.0",
+        "typescript": "^4.6.4",
         "url-loader": "^4.1.1",
         "vue": "2.6.14",
         "vue-loader": "14.2.4",

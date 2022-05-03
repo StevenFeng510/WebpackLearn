@@ -1,6 +1,6 @@
 // 使用css-loader处理css文件
 // import 'css-loader!../css/login.css';
-import './js/Font';
+// import './js/Font';
 // import './css/login.css';
 // import Vue from 'vue';
 // import App from './App.vue';
@@ -18,7 +18,7 @@ if (module.hot) {
     render: (h) => h(App),
 }).$mount('#root'); */
 
-console.log(3333333444444);
+console.log(33333334444441);
 
 axios
     .get('/api/users')

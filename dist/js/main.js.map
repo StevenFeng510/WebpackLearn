@@ -1,0 +1,1 @@
+{"version":3,"file":"js/main.js","mappings":";;;;;;AAAa;AACb;AACA;AACA;AACA;AACA","sources":["webpack://webpack-learn/./src/index.ts"],"sourcesContent":["\"use strict\";\r\nconst title = '前端开发';\r\nconst foo = (msg) => {\r\n    console.log(msg);\r\n};\r\nfoo(title);\r\n"],"names":[],"sourceRoot":""}

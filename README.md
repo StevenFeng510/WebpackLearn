@@ -525,4 +525,65 @@ proxy: {
 },
 ```
 
-## resolve
+## resolve 模块解析规则
+
+-   绝对路径
+-   相对路径
+-   模块
+
+当导入文件没有写全格式时配置, 如`'./component/Home'`
+
+```js
+// 配置格式
+ resolve: {
+     extensions: ['.js', '.json', '.ts', '.jsx', '.vue'],
+ },
+ // 配置路径别名
+ alias:{
+     '@': path.resolve(__dirname, 'src')
+ }
+```
+
+## source map
+
+> 是一种映射的技术, 依据转换之后的代码还原成编写的源代码以此来快速定位源代码的信息
+
+```js
+// 开发工具
+devtool: 'source-map',
+```
+
+## devtool
+
+`mode: 'development',` 状态下, devtool 默认为 eval
+
+-   eval 模式会将源代码保护起来
+-   source-map (会生成一个后缀为`.map`的映射文件)
+-   eval-source-map
+-   inline-source-map
+    后两种模式将错误信息以 base 64 字符串的方式 放入打包后的文件当中 (减少请求)
+-   cheap-source-map 只提供行信息, 不提供列信息
+-   cheap-module-source-map
+
+## ts-loader
+
+用于处理 ts 文件
+
+```js
+ // 处理ts文件的配置
+{
+    test: /\.ts$/,
+    use: ['ts-loader'],
+},
+```
+
+需要先配置 ts 开发环境
+
+```cmd
+npm install -g typescript
+
+// 初始化 ts 配置 会生成一个tsconfig.json文件
+tsc --init
+```
+
+然后安装`ts-loader`

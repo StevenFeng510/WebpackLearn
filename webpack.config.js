@@ -7,9 +7,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     mode: 'development',
     // 入口文件
-    entry: path.join(__dirname, 'src', 'index.js'),
+    entry: path.join(__dirname, 'src', 'index.ts'),
     // 开发工具
-    devtool: false,
+    devtool: 'source-map',
     // 输出
     output: {
         path: path.join(__dirname, 'dist'),
@@ -17,7 +17,12 @@ module.exports = {
         // assetModuleFilename: 'img/[name].[hash:4].[ext]',
         publicPath: '/',
     },
+    // 开发时 忽略兼容浏览器配置
     target: 'web',
+    // 模块匹配规则
+    resolve: {
+        extensions: ['.js', '.json', '.ts', '.jsx', '.vue'],
+    },
     // HtmlWebpackPlugin 插件配置生成html的模板
     plugins: [
         new htmlWebpackPlugin({
@@ -25,7 +30,7 @@ module.exports = {
             filename: 'index.html',
             title: 'test',
         }),
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [
                 {
@@ -161,6 +166,11 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: ['vue-loader'],
+            },
+            // 处理ts文件的配置
+            {
+                test: /\.ts$/,
+                use: ['ts-loader'],
             },
         ],
     },
