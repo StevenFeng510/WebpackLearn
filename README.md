@@ -481,7 +481,7 @@ if (module.hot) {
 },
 ```
 
-vue 16 版本针对 vue3 vue 15/14 版本对应 vue2
+vue-loader 16 版本针对 vue3 vue-loader 15/14 版本对应 vue2
 
 ```sh
 yarn add vue@2.6.14
@@ -587,3 +587,23 @@ tsc --init
 ```
 
 然后安装`ts-loader`
+
+## babel-loader 处理 ts 文件
+
+```js
+ // 处理ts文件的配置
+{
+    test: /\.ts$/,
+    use: ['babel-loader'],
+},
+
+// 添加preset-typescript的预设
+['@babel/preset-typescript']
+
+```
+
+> ps: 使用 babel 打包时, 无法检测 ts 中的语法错误, 所以应该先用 tsc 打包检测一下有无问题
+
+在 scripts 中配置 `"tsc- --noEmit"`
+
+## webpack 加载 vue 文件

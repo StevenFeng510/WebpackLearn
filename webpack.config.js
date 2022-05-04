@@ -170,7 +170,7 @@ module.exports = {
             // 处理ts文件的配置
             {
                 test: /\.ts$/,
-                use: ['ts-loader'],
+                use: ['babel-loader'],
             },
         ],
     },

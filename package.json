@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack",
+        "build2": "webpack --config ./config/webpack.common.js --env production",
         "dev": "webpack-dev-server"
     },
     "keywords": [],
@@ -16,6 +17,7 @@
         "@babel/plugin-transform-arrow-functions": "^7.16.7",
         "@babel/plugin-transform-block-scoping": "^7.16.7",
         "@babel/preset-env": "^7.16.11",
+        "@babel/preset-typescript": "^7.16.7",
         "autoprefixer": "^10.4.4",
         "axios": "^0.27.2",
         "babel-loader": "^8.2.4",
