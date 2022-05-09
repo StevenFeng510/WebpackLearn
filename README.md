@@ -544,7 +544,7 @@ proxy: {
  }
 ```
 
-## source map
+## source-map
 
 > 是一种映射的技术, 依据转换之后的代码还原成编写的源代码以此来快速定位源代码的信息
 
@@ -606,4 +606,8 @@ tsc --init
 
 在 scripts 中配置 `"tsc- --noEmit"`
 
-## webpack 加载 vue 文件
+## 区分 webpack 打包配置
+
+设置一个 config 文件夹
+
+用`webpack.common.js`,`webpack.dev.js`,`webpack.prod.js`来区分生产环境，开发环境还有一些基础配置
